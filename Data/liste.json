@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "name": "test",
+        "photo": "https://www.digischool.fr/images/article/17337_1.jpg"
+    },
+    {
+        "id": 2,
+        "name": "test 2",
+        "photo": null
+    }
+]
