@@ -1,14 +1,12 @@
-import { StyleSheet, Text, View, FlatList  } from 'react-native';
-import liste from './Data/liste.json'
+import { StyleSheet, View } from 'react-native';
 import Search from './Components/Search'
-import Listing from './Components/Listing'
 
 
 export default function App() {
+  // const [liste, setListe] = useState();
   return (
     <View style={styles.container}>
       <Search/>
-      <Listing liste={liste}/>
     </View>
     
   );

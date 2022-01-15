@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, FlatList  } from 'react-native';
 import ListingItem from './ListingItem'
 
 class Listing extends React.Component {
+  constructor(props) {
+    super(props)
+    // Ici on va créer les propriétés de notre component custom Search
+    // this.liste = { liste: l }
+
+    this.liste = this.props.liste
+  }
     render() {
-        const liste = this.props.liste
+      // const liste = this.props.liste
       return (
         <View style={styles.main_container}>
             <FlatList
-                data={liste}
+                data={this.liste}
                 renderItem={({item}) => <ListingItem liste={item}/>}
             />
         </View>

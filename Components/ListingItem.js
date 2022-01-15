@@ -9,7 +9,7 @@ class ListingItem extends React.Component {
       }
       const item = this.props.liste
       const uriItem = (typeof(item.photo) != null) ? item.photo : "image"
-    //   console.log(uriItem)
+      // console.log(uriItem)
     return (
         <View style={styles.main_container}>
             <Image
