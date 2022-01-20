@@ -6,7 +6,7 @@ class Listing extends React.Component {
   constructor(props) {
     super(props)
     // Ici on va créer les propriétés de notre component custom Search
-    // this.liste = { liste: l }
+    //this.liste = this.props.liste
   }
     render() {
       // const liste = this.props.liste
@@ -15,6 +15,10 @@ class Listing extends React.Component {
             <FlatList
                 data={this.props.liste}
                 renderItem={({item}) => <ListingItem liste={item}/>}
+                onEndReachedThreshold={0.5}
+                onEndReached={() => {
+                  console.log("onEndReached")
+                }}
             />
         </View>
       )
@@ -24,7 +28,7 @@ class Listing extends React.Component {
   const styles = StyleSheet.create({
     main_container: {
       padding:5,
-      flex:7,
+      flex:100,
       justifyContent:'flex-start',
       flexDirection: 'column'
     }

@@ -8,15 +8,19 @@ class Search extends React.Component {
      super(props)
      // Ici on va créer les propriétés de notre component custom Search
      this.state = { 
-       liste: l, // contient toute la liste de course
+       liste: [], // contient toute la liste de course
        search:"", // contiendra le text recherché 
-       isLoading: false // Permet de savoir si on cherche un élément ou pas
+       isLoading: true // Permet de savoir si on cherche un élément ou pas
       }
-
    }
+
+  _loading(){
+    const listing = l;
+    return listing;
+  }
   _loadListe(){
     const newList = [];
-    this.setState({ liste: l }, () => {
+    this.setState({ liste: this._loading() }, () => {
       this.setState({ isLoading: true }) // Lancement du chargement
       if(this.state.search.length > 2 ){
         this.state.liste.forEach(element => {
@@ -28,11 +32,13 @@ class Search extends React.Component {
       } else if(this.state.search != "") {
         alert("Recherche trop courte")
       }
+      this.setState({ isLoading: false })
     });
   }
   _displayLoading() {
     if (this.state.isLoading) {
       console.log("Load in progress")
+      this._loadListe()
       return (
         <View style={styles.loading_container}>
           <ActivityIndicator size='large' />
@@ -41,7 +47,7 @@ class Search extends React.Component {
       )
     }
   }
-  
+
   render() {
     return (
       <View style={styles.main}>
@@ -50,9 +56,7 @@ class Search extends React.Component {
             placeholder='Recherche' 
             style={styles.textinput} 
             onChangeText={(text)=>{
-              this.setState({ search: text },()=>{
-                console.log(this.state.search)
-              });
+              this.setState({ search: text });
             }}
             onSubmitEditing={() => this._loadListe()} />
           <View style={styles.btn}>
