@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, FlatList  } from 'react-native';
+import { StyleSheet, View, FlatList  } from 'react-native';
 import ListingItem from './ListingItem'
 
 class Listing extends React.Component {
@@ -28,7 +28,7 @@ class Listing extends React.Component {
   const styles = StyleSheet.create({
     main_container: {
       padding:5,
-      flex:100,
+      flex:10,
       justifyContent:'flex-start',
       flexDirection: 'column'
     }
