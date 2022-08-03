@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, FlatList  } from 'react-native';
+import { StyleSheet, View, Button, FlatList } from 'react-native';
 import ListingItem from './ListingItem'
 
 class Listing extends React.Component {
@@ -8,30 +8,48 @@ class Listing extends React.Component {
     // Ici on va créer les propriétés de notre component custom Search
     //this.liste = this.props.liste
   }
-    render() {
-      // const liste = this.props.liste
-      return (
-        <View style={styles.main_container}>
-            <FlatList
-                data={this.props.liste}
-                renderItem={({item}) => <ListingItem liste={item}/>}
-                onEndReachedThreshold={0.5}
-                onEndReached={() => {
-                  console.log("onEndReached")
-                }}
-            />
-        </View>
-      )
+
+  _displayNav() {
+    if (this.props.last <= 10) {
+      console.warn("-10")
     }
   }
 
-  const styles = StyleSheet.create({
-    main_container: {
-      padding:5,
-      flex:10,
-      justifyContent:'flex-start',
-      flexDirection: 'column'
-    }
-  })
+  render() {
+    // const liste = this.props.liste
+
+    //console.log(this.props)
+    return (
+      <View style={styles.main}>
+        <View style={styles.main_container}>
+          <FlatList
+            data={this.props.liste}
+            renderItem={({ item }) => <ListingItem liste={item} />}
+          // onEndReachedThreshold={0.5}
+          // onEndReached={() => {
+          //   if(this.props.last < this.props.nbResult){
+          //     console.log("onEndReached")
+          //   }
+          // }}
+          />
+        </View>
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  main: {
+    flex: 10,
+    justifyContent: 'flex-start',
+    flexDirection: 'column'
+  },
+  main_container: {
+    padding: 5,
+    flex: 10,
+    justifyContent: 'flex-start',
+    flexDirection: 'column'
+  }
+})
 
 export default Listing
