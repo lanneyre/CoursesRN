@@ -9,26 +9,28 @@ class Search extends React.Component {
   constructor(props) {
     super(props)
     // Ici on va créer les propriétés de notre component custom Search
+
     this.state = {
       liste: [], // contient toute la liste de course
       search: "", // contiendra le text recherché 
       isLoading: true, // Permet de savoir si on cherche un élément ou pas
-      last: 0,
-      nbResult: 0,
-      page: 1
+      last: 0, // Permet de savoir si nous sommes à la dernière page ou pas
+      nbResult: 0, // Combien y a t il de resultat pour ma recherche
+      page: 1 // La page de recherche mais ne sera utile que pour les bouton plus et moins
     }
   }
 
+  // Récupère la liste de course en fonction du moteur de recherche
   _loadListe() {
     this.setState({ isLoading: true })
     getData(this.state.search, this.state.last, constante.nbResult, this.state.page).then(data => {
-      console.log(data);
       this.setState({ liste: data.results, last: data.last, nbResult: data.nbResult, page: data.page }, () => {
-        //console.log(this.state.page)
         this.setState({ isLoading: false });
       })
     });
   }
+
+  // Affiche une petite icone de chargement
   _displayLoading() {
     if (this.state.isLoading) {
       console.log("Load in progress")
@@ -40,6 +42,7 @@ class Search extends React.Component {
       )
     }
   }
+
   componentDidMount() {
     this._loadListe()
   }
@@ -62,6 +65,7 @@ class Search extends React.Component {
         <Listing liste={this.state.liste} />
         <View style={styles.nav}>
           <View style={styles.btnNav}>
+            {/* Quand je suis sur la première page */}
             {this.state.page <= 1 ?
               <Button title='Moins' disabled="true" />
               :
