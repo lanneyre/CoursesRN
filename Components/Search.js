@@ -1,11 +1,12 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, Button, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, TextInput, Button, ActivityIndicator, Image, TouchableHighlight } from 'react-native'
 import Listing from './Listing'
 // import l from '../Data/liste.json'
 import getData from './getData'
 import constante from '../constante/const'
+import Loader from './Loader'
 
-class Search extends React.Component {
+class Search extends Loader {
   constructor(props) {
     super(props)
     // Ici on va créer les propriétés de notre component custom Search
@@ -30,24 +31,17 @@ class Search extends React.Component {
     });
   }
 
-  // Affiche une petite icone de chargement
-  _displayLoading() {
-    if (this.state.isLoading) {
-      console.log("Load in progress")
-      return (
-        <View style={styles.loading_container}>
-          <ActivityIndicator size='large' />
-          {/* Le component ActivityIndicator possède une propriété size pour définir la taille du visuel de chargement : small ou large. Par défaut size vaut small, on met donc large pour que le chargement soit bien visible */}
-        </View>
-      )
-    }
-  }
-
   componentDidMount() {
     this._loadListe()
   }
 
+  _displayAddItem() {
+    // console.log("display Add Item")
+    this.props.navigation.navigate('AddItem')
+  }
+
   render() {
+
     // this._loadListe()
     return (
       <View style={styles.main}>
@@ -59,6 +53,15 @@ class Search extends React.Component {
               this.setState({ search: text, liste: [], last: 0, nbResult: 0, page: 1 }, () => this._loadListe());
             }}
           />
+          <TouchableHighlight styles={styles.imgBtn} onPress={() => {
+            console.log("Plus");
+            this._displayAddItem()
+          }}>
+            <Image
+              style={styles.img}
+              source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/7/77/Plus_blue.svg" }}
+            />
+          </TouchableHighlight>
         </View>
 
         {this._displayLoading()}
@@ -99,29 +102,29 @@ const styles = StyleSheet.create({
   },
   main_container: {
     flex: 1,
-    flexDirection: 'column',
-    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: 'center',
+    // marginTop: 20,
     // height: 200
   },
   textinput: {
     marginLeft: 5,
-    marginRight: 5,
+
     borderColor: '#000000',
     borderWidth: 1,
-    paddingLeft: 5
+    paddingLeft: 5,
+    padding: 5,
+    borderRadius: 5,
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    width: "80%"
   },
   btn: {
     marginBottom: 30,
     padding: 5
-  },
-  loading_container: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 100,
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   nav: {
     flex: 1,
@@ -133,6 +136,21 @@ const styles = StyleSheet.create({
     width: "45%",
     flex: 1,
 
+  },
+  imgBtn: {
+    backgroundColor: "red",
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 5,
+
+  },
+  img: {
+    // width: "100%",
+    // height: "100%"
+    width: 32,
+    height: 32,
+    marginRight: 15
   }
 })
 

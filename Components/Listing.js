@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { StyleSheet, View, Button, FlatList } from 'react-native';
+import React from 'react'
+import { StyleSheet, View, FlatList } from 'react-native';
 import ListingItem from './ListingItem'
 
 class Listing extends React.Component {
@@ -7,12 +7,6 @@ class Listing extends React.Component {
     super(props)
     // Ici on va créer les propriétés de notre component custom Search
     //this.liste = this.props.liste
-  }
-
-  _displayNav() {
-    if (this.props.last <= 10) {
-      console.warn("-10")
-    }
   }
 
   render() {
@@ -25,12 +19,6 @@ class Listing extends React.Component {
           <FlatList
             data={this.props.liste}
             renderItem={({ item }) => <ListingItem liste={item} />}
-          // onEndReachedThreshold={0.5}
-          // onEndReached={() => {
-          //   if(this.props.last < this.props.nbResult){
-          //     console.log("onEndReached")
-          //   }
-          // }}
           />
         </View>
       </View>

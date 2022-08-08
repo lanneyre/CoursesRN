@@ -6,7 +6,7 @@ export default function getData(text, last, nbResult, page) {
     if (!page) {
         page = 1;
     }
-    let url = 'http://localhost:80/listeJson.php?nbResult=' + nbResult + '&last=' + last + '&query=' + text
+    let url = 'http://' + constante.serveur + ':' + constante.port + '/listeJson.php?nbResult=' + nbResult + '&last=' + last + '&query=' + text
     if (page > 1) {
         url += '&page=' + page;
     }

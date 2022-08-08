@@ -1,23 +1,24 @@
 import { StyleSheet, View } from 'react-native';
-import Search from './Components/Search'
-
+import 'react-native-gesture-handler';
+// import Search from './Components/Search'
+import Navigation from './Navigation/Navigation';
 
 export default function App() {
   // const [liste, setListe] = useState();
   return (
     <View style={styles.container}>
-      <Search/>
+      <Navigation />
     </View>
-    
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    padding:5,
+    padding: 5,
     flex: 1,
-    flexDirection:'column',
+    flexDirection: 'column',
     justifyContent: 'flex-start'
   },
 });
