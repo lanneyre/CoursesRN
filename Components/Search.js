@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, Button, ActivityIndicator, Image, TouchableHighlight } from 'react-native'
+import { StyleSheet, View, TextInput, Button, Image, TouchableOpacity } from 'react-native'
 import Listing from './Listing'
 // import l from '../Data/liste.json'
 import getData from './getData'
@@ -53,7 +53,7 @@ class Search extends Loader {
               this.setState({ search: text, liste: [], last: 0, nbResult: 0, page: 1 }, () => this._loadListe());
             }}
           />
-          <TouchableHighlight styles={styles.imgBtn} onPress={() => {
+          <TouchableOpacity styles={styles.imgBtn} onPress={() => {
             console.log("Plus");
             this._displayAddItem()
           }}>
@@ -61,7 +61,7 @@ class Search extends Loader {
               style={styles.img}
               source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/7/77/Plus_blue.svg" }}
             />
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 
         {this._displayLoading()}

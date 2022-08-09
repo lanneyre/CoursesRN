@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image, TouchableHighlight } from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 
 class ListingItem extends React.Component {
   render() {
@@ -18,22 +18,22 @@ class ListingItem extends React.Component {
         />
         <Text style={styles.title_text}>{item.name}</Text>
         <View style={styles.btn}>
-          <TouchableHighlight styles={styles.imgBtn} onPress={() => {
+          <TouchableOpacity styles={styles.imgBtn} onPress={() => {
             console.log("validé", item);
           }}>
             <Image
               style={styles.imgBtn}
               source={{ uri: "data:image/png;base64," + icons.ok }}
             />
-          </TouchableHighlight>
-          <TouchableHighlight onPress={() => {
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {
             console.log("annulé", item);
           }}>
             <Image
               style={styles.imgBtn}
               source={{ uri: "data:image/png;base64," + icons.ko }}
             />
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </View>
     )
